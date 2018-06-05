@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Generated class for the MainPage page.
  *
@@ -15,11 +15,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private AFauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPage');
+    this.AFauth.authState.subscribe( data => console.log(data));
   }
 
 }

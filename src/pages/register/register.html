@@ -8,7 +8,7 @@
 
 <ion-content padding class="flyer">
 
-    <ion-grid style="padding:0px;height:100%;" ion-fixed>
+    <ion-grid style="padding:0px;height:100%;" >
       <br>
       <br>
       <br>
@@ -27,7 +27,7 @@
         <ion-col>
             <ion-item class="input">
               <ion-label color="primary" stacked>Name</ion-label>
-              <ion-input type="text" placeholder="Your name" [(ngModel)]="todo.name" name="name" required></ion-input>
+              <ion-input type="text" placeholder="Your name" [(ngModel)]="profile.name" name="name" required></ion-input>
             </ion-item>
           </ion-col>
           &nbsp;
@@ -36,7 +36,7 @@
           <ion-col>
             <ion-item class="input">
               <ion-label color="primary" stacked>Surname</ion-label>
-              <ion-input  type="text" placeholder="Your last name"  [(ngModel)]="todo.surname" name="surname"required></ion-input>
+              <ion-input  type="text" placeholder="Your last name"  [(ngModel)]="profile.surname" name="surname"required></ion-input>
             </ion-item>
           </ion-col>
       </ion-row>

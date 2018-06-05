@@ -39,13 +39,15 @@ alert(comment){
     })
     ALERT.present()
 }
-authenticate(field){
+async authenticate(field){
   try{
-    const result = this.AFauth.auth.signInWithEmailAndPassword(field.email, field.password);
-    this.navCtrl.setRoot(MainPage);
+    const result = await this.AFauth.auth.signInWithEmailAndPassword(field.email, field.password);
+    if (result){
+      this.navCtrl.setRoot(MainPage);}
   }
   catch(error){
     this.alert("Please check your email and password!")
+    this.navCtrl.setRoot(HomePage)
     console.log(error);
   }
 }
