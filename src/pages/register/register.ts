@@ -34,7 +34,9 @@ export class RegisterPage {
     this.checkFields(fields);
   }
   checkFields(field){
-    var string = this.todo.password1;
+    if( this.todo.password1 != null ){
+    var string = this.todo.password1;}
+
     if( this.profile.name == null || this.profile.name == "" ||
    this.profile.surname == null || this.profile.surname == "" ||
    field.email == null || field.email == "" ||
