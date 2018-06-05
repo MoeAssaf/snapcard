@@ -1,0 +1,8 @@
+{
+  "name": "SnapCard",
+  "app_id": "c0d59caa",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
