@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController , AlertController} from 'ionic-angular';
+import { NavController , AlertController , Platform} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Keyboard } from '@ionic-native/keyboard';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Storage } from '@ionic/storage';
 
 import { RegisterPage } from '../register/register';
 import { MainPage } from '../main/main';
@@ -9,11 +12,29 @@ import { MainPage } from '../main/main';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  todo = {}
+  todo = {email:"",password:""}
 
-  constructor(private AFauth : AngularFireAuth,public navCtrl: NavController,  private alertCtrl: AlertController) {
-
+  constructor(private AFauth : AngularFireAuth,public navCtrl: NavController,  private alertCtrl: AlertController, private platform: Platform
+              ,private keyboard : Keyboard, private stBar:StatusBar,private storage: Storage) {
+    platform.ready().then(() => {
+      // Here I'm using the keyboard class from ionic native.
+      this.keyboard.disableScroll(true);
+      this.stBar.styleDefault();
+    });
 }
+ionViewWillEnter(){
+  this.storage.get('state').then((val) => {
+    console.log(val);
+    if( val == 'logged'){
+      this.storage.get('email').then((email) => {
+        this.storage.get('password').then((password) => {
+         this.todo.email = email;
+         this.todo.password = password;
+         this.authenticate(this.todo)
+        });
+      });
+    }
+  });}
 logForm(){
   console.log(this.todo);
   this.checkFields(this.todo)
@@ -43,6 +64,7 @@ async authenticate(field){
   try{
     const result = await this.AFauth.auth.signInWithEmailAndPassword(field.email, field.password);
     if (result){
+      this.setLoginData(field.email,field.password);
       this.navCtrl.setRoot(MainPage);}
   }
   catch(error){
@@ -51,4 +73,11 @@ async authenticate(field){
     console.log(error);
   }
 }
+setLoginData(email,password){
+       // this.storage.set('logged', true);
+    this.storage.set('email',email);
+    this.storage.set('password',password);
+    this.storage.set('state','logged');
+    console.log('Storing details(SUCCESS)');
+  }
 }

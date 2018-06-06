@@ -20,7 +20,7 @@ import{ Profile } from '../../models/details'
 })
 export class RegisterPage {
   profile = {} as Profile;
-  todo = {};
+  todo = {password1:""};
   constructor( private AFauth : AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private afDB: AngularFireDatabase) {
   }
