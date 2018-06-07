@@ -16,13 +16,14 @@ import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
-
+import { CardPage } from '../pages/card/card';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     RegisterPage,
     MainPage,
+    CardPage,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +39,14 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     RegisterPage,
     MainPage,
+    CardPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     NativePageTransitions,
     Keyboard,
+    
     
 
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>main</ion-title>
+    <button clear ion-button style="float:right" round color="white" (click)="logout()">Sign out</button>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content >
+  <ion-slides style="height: 85%"  pager>
+    <ion-slide>
+      <div class="emptycard" style="height: 500px;">
+        <ion-grid style="height: 100%;">
+          <ion-row style="height: 100%;" align-items-center >
+            <ion-col>
+              <button color="primary" ion-button default round outline (click)="addCard()"><ion-icon name="md-add"></ion-icon>&nbsp; Add card</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

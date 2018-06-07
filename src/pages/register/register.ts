@@ -20,7 +20,7 @@ import{ Profile } from '../../models/details'
 })
 export class RegisterPage {
   profile = {} as Profile;
-  todo = {password1:""};
+  todo = {password1:"",password2:"",name:"",surname:"",email:""};
   constructor( private AFauth : AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private afDB: AngularFireDatabase) {
   }
@@ -34,8 +34,7 @@ export class RegisterPage {
     this.checkFields(fields);
   }
   checkFields(field){
-    if( this.todo.password1 != null ){
-    var string = this.todo.password1;}
+    var string = this.todo.password1;
 
     if( this.profile.name == null || this.profile.name == "" ||
    this.profile.surname == null || this.profile.surname == "" ||

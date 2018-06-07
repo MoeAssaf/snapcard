@@ -61,6 +61,8 @@ alert(comment){
     ALERT.present()
 }
 async authenticate(field){
+  field.email = field.email.replace(/\s/g,'');
+
   try{
     const result = await this.AFauth.auth.signInWithEmailAndPassword(field.email, field.password);
     if (result){
@@ -74,7 +76,6 @@ async authenticate(field){
   }
 }
 setLoginData(email,password){
-       // this.storage.set('logged', true);
     this.storage.set('email',email);
     this.storage.set('password',password);
     this.storage.set('state','logged');

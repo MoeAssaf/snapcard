@@ -11,5 +11,6 @@ export interface Card{
     description: string;
     color: string;
     display_name: string;
+    code: string;
   }
   

@@ -6,13 +6,97 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>card</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Add card</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-grid>
+  <form (ngSubmit)="logForm()">
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Company</ion-label>
+        <ion-input type="text" placeholder="Company's name" [(ngModel)]="card.company" name="company" ></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Display name</ion-label>
+        <ion-input type="text" placeholder="The name you would like to display" [(ngModel)]="card.display_name" name="display_name"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Occupation</ion-label>
+        <ion-input type="text" placeholder="Ex: Doctor & surgeon" [(ngModel)]="card.occupation" name="occupation"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Description</ion-label>
+        <ion-input type="text" placeholder="Ex: Brain surgeon" [(ngModel)]="card.description" name="description"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Telefon</ion-label>
+        <ion-input type="number" placeholder="Telephone number" [(ngModel)]="card.telefon" name="telefon"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Telefax</ion-label>
+        <ion-input type="number" placeholder="Fax number" [(ngModel)]="card.telefax" name="telefax"></ion-input>
+      </ion-item>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-item class="input">
+          <ion-label color="primary" stacked>Address 1</ion-label>
+          <ion-input type="email" placeholder="Street" [(ngModel)]="card.address1" name="address1"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row justify-content-center padding>
+          <ion-item class="input">
+            <ion-label color="primary" stacked>Address 2</ion-label>
+            <ion-input type="text" placeholder="City/Town" [(ngModel)]="card.address2" name="address2"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row justify-content-center padding>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Address 3</ion-label>
+              <ion-input type="text" placeholder="Country" [(ngModel)]="card.address3" name="address3"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row justify-content-center padding>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Website</ion-label>
+              <ion-input type="text" placeholder="Website link(URL)" [(ngModel)]="card.website" name="website"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row >
+              <ion-label color="primary" stacked>Choose your card color (optional)</ion-label>
 
+          </ion-row>
+          <ion-row justify-content-left padding>
+                <!-- <ion-label color="primary" stacked>Choose your card color</ion-label> -->
+                <!-- *ngFor ="let color of colors" -->
+                <div class="selector" padding>
+                <ion-list radio-group [(ngModel)]="card.color" name="color">
+                    <ion-item class="option" color="white" *ngFor ="let color of colors">
+                      <ion-label color={{color.name}}>{{color.name}}</ion-label>
+                      <ion-radio value={{color.code}}  ></ion-radio>
+                    </ion-item>
+                  </ion-list>
+                </div>
+          </ion-row>
+          <br>
+          <br>
+          <ion-row justify-content-center >
+              <button ion-button outline round type="submit"  color="primary"><p  class="button-content" >Submit<p></button>
+          </ion-row>
+  </form>
+  </ion-grid>
 </ion-content>
