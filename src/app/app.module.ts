@@ -11,6 +11,8 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { Keyboard } from '@ionic-native/keyboard';
 import { FIREBASE_CONFIG } from './app.firebase.config';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+
 
 import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
@@ -31,7 +33,8 @@ import { CardPage } from '../pages/card/card';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

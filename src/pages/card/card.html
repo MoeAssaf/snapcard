@@ -25,7 +25,7 @@
     <ion-row justify-content-center padding>
       <ion-item class="input">
         <ion-label color="primary" stacked>Display name</ion-label>
-        <ion-input type="text" placeholder="The name you would like to display" [(ngModel)]="card.display_name" name="display_name"></ion-input>
+        <ion-input type="text" placeholder="The name you want to display" [(ngModel)]="card.display_name" name="display_name"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row justify-content-center padding>
@@ -53,9 +53,15 @@
       </ion-item>
       </ion-row>
       <ion-row justify-content-center padding>
+          <ion-item class="input">
+            <ion-label color="primary" stacked>Email</ion-label>
+            <ion-input type="email" placeholder="example@example.com" [(ngModel)]="card.email" name="email">sss</ion-input>
+          </ion-item>
+      </ion-row>
+      <ion-row justify-content-center padding>
         <ion-item class="input">
           <ion-label color="primary" stacked>Address 1</ion-label>
-          <ion-input type="email" placeholder="Street" [(ngModel)]="card.address1" name="address1"></ion-input>
+          <ion-input type="text" placeholder="Street" [(ngModel)]="card.address1" name="address1"></ion-input>
         </ion-item>
       </ion-row>
       <ion-row justify-content-center padding>
@@ -76,21 +82,23 @@
               <ion-input type="text" placeholder="Website link(URL)" [(ngModel)]="card.website" name="website"></ion-input>
             </ion-item>
           </ion-row>
-          <ion-row >
-              <ion-label color="primary" stacked>Choose your card color (optional)</ion-label>
+          <ion-row padding >
+              <ion-label color="primary" stacked>Choose your card color by sliding the colors(optional) </ion-label>
 
           </ion-row>
-          <ion-row justify-content-left padding>
-                <!-- <ion-label color="primary" stacked>Choose your card color</ion-label> -->
-                <!-- *ngFor ="let color of colors" -->
-                <div class="selector" padding>
-                <ion-list radio-group [(ngModel)]="card.color" name="color">
-                    <ion-item class="option" color="white" *ngFor ="let color of colors">
-                      <ion-label color={{color.name}}>{{color.name}}</ion-label>
-                      <ion-radio value={{color.code}}  ></ion-radio>
-                    </ion-item>
-                  </ion-list>
-                </div>
+
+          <ion-row padding>
+              <div class="selector" padding style="width:100%" >
+                <ion-slides radio-group [(ngModel)]="card.color" name="color">
+                  <ion-slide  *ngFor ="let color of colors" padding>
+                      <ion-item class="option" color="white">
+                          <ion-label color={{color.name}}>{{color.name}}</ion-label>
+                          <ion-radio value={{color.code}}  ></ion-radio>
+                        </ion-item>
+                                         
+                  </ion-slide>
+                </ion-slides>
+              </div>
           </ion-row>
           <br>
           <br>

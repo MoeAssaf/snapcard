@@ -4,7 +4,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import{ Card } from '../../models/cards'
+import{ Card } from '../../models/cards';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the CardPage page.
  *
@@ -18,18 +20,23 @@ import{ Card } from '../../models/cards'
   templateUrl: 'card.html',
 })
 export class CardPage {
-  colors= [{name:"Purple", code:"#d60eed"},
-          {name:"Orange", code:"#ff6e00"},
-          {name:"Blue", code:"#1e4fff"},
-          {name:"Green", code:"#03d600"},
-          {name:"Red", code:"#ff2b2b"},
-          {name:"Brown", code:"#843919"},
+  colors= [{name:"Purple", code:"#d884ff"},
+          {name:"Orange", code:"#ff8d60"},
+          {name:"Blue", code:"#77c6ff"},
+          {name:"Green", code:"#77ff8b"},
+          {name:"Red", code:"#ff6b6b"},
+          {name:"Brown", code:"#b26e49"},
           {name:"Black", code:"#000000"},
-          {name:"Pink", code:"#ff4fa4"}
+          {name:"Pink", code:"#ff82d7"},
+          {name:"Yellow", code:"#fff877"},
         ]
   card = {} as Card;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private AFauth : AngularFireAuth, private afDB: AngularFireDatabase) {
+    private AFauth : AngularFireAuth, private afDB: AngularFireDatabase, storage: Storage) {
+      // this.card.email = 
+      storage.get('email').then((val) => {
+        this.card.email = val;
+      });
   }
 
   ionViewWillLoad() {

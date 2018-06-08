@@ -21,20 +21,20 @@ export class HomePage {
       this.keyboard.disableScroll(true);
       this.stBar.styleDefault();
     });
-}
-ionViewWillEnter(){
-  this.storage.get('state').then((val) => {
-    console.log(val);
-    if( val == 'logged'){
-      this.storage.get('email').then((email) => {
-        this.storage.get('password').then((password) => {
-         this.todo.email = email;
-         this.todo.password = password;
-         this.authenticate(this.todo)
+    this.storage.get('state').then((val) => {
+      console.log(val);
+      if( val == 'logged'){
+        this.storage.get('email').then((email) => {
+          this.storage.get('password').then((password) => {
+           this.todo.email = email;
+           this.todo.password = password;
+           this.authenticate(this.todo)
+          });
         });
-      });
-    }
-  });}
+      }
+    });
+}
+
 logForm(){
   console.log(this.todo);
   this.checkFields(this.todo)

@@ -7,6 +7,8 @@
 <ion-header>
 
   <ion-navbar color="primary">
+ 
+
     <button clear ion-button style="float:right" round color="white" (click)="logout()">Sign out</button>
 
   </ion-navbar>
@@ -15,7 +17,32 @@
 
 
 <ion-content >
-  <ion-slides style="height: 85%"  pager>
+  <ion-slides style="height: 85%" pager  >
+      <ion-slide *ngFor="let card of listCard$ | async" padding>
+          <ion-card  class="emptycard" style="height: 500px;"[style.border-color]=(card.color) >
+            <ion-row justify-content-end 	 >
+              <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(card.color)	>
+                  <h2 style="margin-top: 10px;color:white" >{{card.company}}</h2>
+              </ion-item>
+            </ion-row>
+            <ion-content justify-content-start	class="row" text-left ion-start>
+                    <h2>{{card.display_name}}</h2>
+                    <p>{{card.occupation}}</p>
+                    <p>{{card.description}}</p>
+                    <br>
+                    <p>Telephone: {{card.telefon}}</p>
+                    <p>Fax: {{card.telefax}}</p>
+                    <p>Email: {{card.email}}</p>
+                    <p [style.color]=(card.color)>{{card.website}}</p>
+
+                  <p>{{card.address1}}</p>
+                  <p>{{card.address2}}</p>
+                  <p>{{card.address3}}</p>
+              </ion-content>
+              <!-- <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode> -->
+
+          </ion-card>
+        </ion-slide>
     <ion-slide>
       <div class="emptycard" style="height: 500px;">
         <ion-grid style="height: 100%;">
