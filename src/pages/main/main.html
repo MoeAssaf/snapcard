@@ -18,7 +18,7 @@
 
 <ion-content >
   <ion-slides style="height: 85%" pager  >
-      <ion-slide *ngFor="let card of listCard$ | async" padding>
+      <ion-slide *ngFor="let card of listCard$" padding>
           <ion-card  class="emptycard" style="height: 500px;"[style.border-color]=(card.color) >
             <ion-row justify-content-end 	 >
               <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(card.color)	>
@@ -38,6 +38,7 @@
                   <p>{{card.address1}}</p>
                   <p>{{card.address2}}</p>
                   <p>{{card.address3}}</p>
+                  <p>{{card.barcode}}</p>
               </ion-content>
               <!-- <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode> -->
 
