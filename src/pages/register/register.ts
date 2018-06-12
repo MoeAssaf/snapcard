@@ -85,5 +85,25 @@ export class RegisterPage {
     }
   )
 }
+async test(){
+  const result = await this.AFauth.authState.subscribe(data => {
+    var path = this.code;
+    this.uid = data.uid;
+   //console.log(path)
+   
+    this.listCard$ = this.afDB.object(`${path}`).valueChanges();
+               this.listCard$.subscribe(cards => {console.log(cards);
+                                  return cards;
+                                                                               
+                                                });
+
+ })
+;
+ 
+ ;
+
+
+}
+
 
 }

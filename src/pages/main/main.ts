@@ -1,3 +1,4 @@
+import { ViewcardPage } from './../viewcard/viewcard';
 import { CardPage } from './../card/card';
 import { HomePage } from './../home/home';
 
@@ -5,11 +6,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { AngularFireList } from 'angularfire2/database/interfaces'
 
 import { Card } from '../../models/cards';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { Storage } from '@ionic/storage';
 
@@ -32,12 +35,14 @@ export class MainPage {
   qrData: "failed"
   listCard$: FirebaseListObservable<any[]>
   listCardNames$: FirebaseListObservable<any[]>
+  grabbedCard$: FirebaseListObservable<any[]>
   uid: any
+  scannedCard: any
 
   constructor(private AFauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams,
-              private storage: Storage, private afDB : AngularFireDatabase) {
+              private storage: Storage, private afDB : AngularFireDatabase, private scanner: BarcodeScanner) {
     this.getCardsNames();
-
+    // this.test()
     //this.getNames();
 
 
@@ -65,28 +70,35 @@ export class MainPage {
      //console.log(path);
       this.listCardNames$ = this.afDB.object(`${path}`).valueChanges();
                  //console.log(this.listCard$);
-                 this.listCardNames$.subscribe(cards => {console.log(cards);
+                 this.listCardNames$.subscribe(cards => {
                                     this.listCard$ =  this.getObjectData(cards); 
                                     return cards;
                                                                                  
                                                   });
 
    })
-;
-   
-   ;
+  }
+  async grabCard(path){
+    const result = await this.AFauth.authState.subscribe(data => {
+     console.log(path);
+       this.grabbedCard$ = this.afDB.object(path).valueChanges();
+                 this.grabbedCard$.subscribe(card => {console.log('Grabbed card', card);
+                                     this.scannedCard = this.grabbedCard$;
+                                     this.navCtrl.push(ViewcardPage,[this.grabbedCard$])
 
+                                                                                 
+                                                  });
 
+   })
   }
    getObjectData(data){
     const array = Object.keys(data).map(i => data[i]);
 
 
     let keys = Object.keys(data);
-    console.log('Keys:', keys)
     var i;
     for (i = 0; i < keys.length; i++) { 
-      array[i].barcode = `${this.uid}/${keys[i]}`;
+      array[i].barcode = `card/${this.uid}/${keys[i]}`;
 }
   // console.log('index:',array[0]);
   console.log('Data:',array);
@@ -94,8 +106,34 @@ export class MainPage {
 
   }
 
-  
-  
+  scan(){
+    this.scanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+      this.grabCard(barcodeData.text);
+     }).catch(err => {
+         console.log('Error', err);
+     });
+  }
+//   async test(){
+//     const result = await this.AFauth.authState.subscribe(data => {
+//       var path = 'card/deGwf1NDkoOmtLIpM5CRgTk9zt82/-LESduWfNFLY_LoZQ0J4';
+//       this.uid = data.uid;
+//      //console.log(path)
+     
+//       this.listCard = this.afDB.object(`${path}`).valueChanges();
+//                  this.listCard.subscribe(cards => {console.log('Test',cards);
+//                                     return cards;
+                                                                                 
+//                                                   });
+
+//    })
+// ;
+   
+//    ;
+
+
+//   }
+
   // async getNames(){
   //   this.AFauth.authState.subscribe(data => {
   //     var path = ('card');

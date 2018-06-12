@@ -11,9 +11,11 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 
 import { Keyboard } from '@ionic-native/keyboard';
 import { FIREBASE_CONFIG } from './app.firebase.config';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+// import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from 'angularx-qrcode';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
-
+import { ViewcardPage } from '../pages/viewcard/viewcard';
 import { MainPage } from '../pages/main/main';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -26,6 +28,7 @@ import { CardPage } from '../pages/card/card';
     RegisterPage,
     MainPage,
     CardPage,
+    ViewcardPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { CardPage } from '../pages/card/card';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     IonicStorageModule.forRoot(),
-    NgxQRCodeModule
+    QRCodeModule
+    // NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,12 +47,14 @@ import { CardPage } from '../pages/card/card';
     RegisterPage,
     MainPage,
     CardPage,
+    ViewcardPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     NativePageTransitions,
     Keyboard,
+    BarcodeScanner,
     
     
 

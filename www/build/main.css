@@ -16030,10 +16030,10 @@ ion-datetime {
   z-index: 0;
   display: block;
   overflow: hidden;
-  width: 56px;
-  height: 56px;
+  width: 70px;
+  height: 70px;
   font-size: 14px;
-  line-height: 56px;
+  line-height: 70px;
   text-overflow: ellipsis;
   text-transform: none;
   white-space: nowrap;
@@ -16059,14 +16059,14 @@ ion-datetime {
 }
 
 .fab[mini] {
-  margin: 8px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  margin: 7.5px;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
 }
 
 .fab[mini] .fab-close-icon {
-  line-height: 40px;
+  line-height: 55px;
 }
 
 ion-fab {
@@ -16076,11 +16076,11 @@ ion-fab {
 
 ion-fab[center] {
   left: 50%;
-  margin-left: -28px;
+  margin-left: -35px;
 }
 
 ion-fab[middle] {
-  margin-top: -28px;
+  margin-top: -35px;
   top: 50%;
 }
 
@@ -16117,15 +16117,15 @@ ion-fab[start] {
 }
 
 ion-fab[top][edge] {
-  top: -28px;
+  top: -35px;
 }
 
 ion-fab[bottom][edge] {
-  bottom: -28px;
+  bottom: -35px;
 }
 
 ion-fab-list {
-  margin: 66px 0;
+  margin: 80px 0;
   position: absolute;
   top: 0;
   display: none;
@@ -16138,14 +16138,14 @@ ion-fab-list {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  min-width: 56px;
-  min-height: 56px;
+  min-width: 70px;
+  min-height: 70px;
 }
 
 .fab-in-list {
   margin: 8px 0;
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
   opacity: 0;
   visibility: hidden;
   -webkit-transform: scale(0);
@@ -16175,7 +16175,7 @@ ion-fab-list[side=top] {
 }
 
 ion-fab-list[side=left] {
-  margin: 0 66px;
+  margin: 0 80px;
   right: 0;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -16185,7 +16185,7 @@ ion-fab-list[side=left] {
 }
 
 ion-fab-list[side=right] {
-  margin: 0 66px;
+  margin: 0 80px;
   left: 0;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -16206,7 +16206,7 @@ ion-fab-list[side=right] {
   right: 0;
   top: 0;
   position: absolute;
-  line-height: 56px;
+  line-height: 70px;
   opacity: 0;
   -webkit-transform: scale(0.4) rotateZ(-45deg);
   transform: scale(0.4) rotateZ(-45deg);
@@ -60543,4 +60543,16 @@ page-register .button-content {
 
 page-register .input {
   border-radius: 15px;
+}
+
+page-viewcard .emptycard {
+  border-radius: 15px;
+}
+
+page-viewcard .container {
+  border-radius: 15px;
+}
+
+page-viewcard .row {
+  margin-top: 10px;
 }

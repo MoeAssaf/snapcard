@@ -17,30 +17,41 @@
 
 
 <ion-content >
-  <ion-slides style="height: 85%" pager  >
+  <ion-slides style="height: 90%"   >
       <ion-slide *ngFor="let card of listCard$" padding>
-          <ion-card  class="emptycard" style="height: 500px;"[style.border-color]=(card.color) >
+          <ion-card  class="emptycard" style="height: 580px;"[style.border-color]=(card.color) >
             <ion-row justify-content-end 	 >
               <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(card.color)	>
                   <h2 style="margin-top: 10px;color:white" >{{card.company}}</h2>
               </ion-item>
             </ion-row>
             <ion-content justify-content-start	class="row" text-left ion-start>
-                    <h2>{{card.display_name}}</h2>
-                    <p>{{card.occupation}}</p>
+              <ion-grid style="height: 100%;">
+                <ion-row>
+                <ion-col >
+                    <h1>{{card.display_name}}</h1>
+                    <h2>{{card.occupation}}</h2>
                     <p>{{card.description}}</p>
                     <br>
-                    <p>Telephone: {{card.telefon}}</p>
+                    <p>Phone: {{card.telefon}}</p>
                     <p>Fax: {{card.telefax}}</p>
-                    <p>Email: {{card.email}}</p>
+                    <p>Email: {{card.email}} </p>
                     <p [style.color]=(card.color)>{{card.website}}</p>
-
+                  </ion-col>
+                  <ion-col align-self-end		>
                   <p>{{card.address1}}</p>
                   <p>{{card.address2}}</p>
                   <p>{{card.address3}}</p>
-                  <p>{{card.barcode}}</p>
+                  <p>&nbsp;</p>
+                </ion-col>
+              </ion-row>
+                <ion-row style="float: bottom" justify-content-end	>
+                  <qrcode style="float: right ;" [qrdata]=(card.barcode) [size]="150" [level]="'M'"></qrcode>
+                </ion-row>
+                </ion-grid>
+                
               </ion-content>
-              <!-- <ngx-qrcode [qrc-value]="qrData"></ngx-qrcode> -->
+              <!-- <ngx-qrcode [qrc-value]=(card.barcode)></ngx-qrcode> -->
 
           </ion-card>
         </ion-slide>
@@ -56,4 +67,11 @@
       </div>
     </ion-slide>
   </ion-slides>
+  <ion-fab bottom center style="margin-bottom: 2%;"  >
+      <button ion-fab><ion-icon name="ios-arrow-up"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button ion-fab (click)="scan()"><ion-icon name="md-qr-scanner"></ion-icon></button>
+        <button ion-fab (click)="addCard()"><ion-icon name="md-add"          ></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 </ion-content>
