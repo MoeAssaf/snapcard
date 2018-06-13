@@ -99,6 +99,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 
 
 
@@ -111,30 +146,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var ViewcardPage = /** @class */ (function () {
     function ViewcardPage(navCtrl, navParams, AFauth, afDB) {
+        // this.card = {} as Card;
+        // this.card.address1 = this.navParams.get('address1');
+        // this.card.address2 = this.navParams.get('address2');
+        // this.card.address3 = this.navParams.get('address3');
+        // this.card.email = this.navParams.get('email');
+        // this.card.display_name = this.navParams.get('display_name');
+        // this.card.telefon = this.navParams.get('telefon');
+        // this.card.telefax = this.navParams.get('telefax');
+        // this.card.color = this.navParams.get('color');
+        // this.card.company = this.navParams.get('company');
+        // this.card.description = this.navParams.get('description');
+        // this.card.occupation = this.navParams.get('occupation');
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.AFauth = AFauth;
         this.afDB = afDB;
-        this.data = {};
-        this.data.address1 = this.navParams.get('address1');
-        this.data.address2 = this.navParams.get('address2');
-        this.data.address3 = this.navParams.get('address3');
-        this.data.email = this.navParams.get('email');
-        this.data.display_name = this.navParams.get('display_name');
-        this.data.telefon = this.navParams.get('telefon');
-        this.data.telefax = this.navParams.get('telefax');
-        this.data.color = this.navParams.get('color');
-        this.data.company = this.navParams.get('company');
-        this.data.description = this.navParams.get('description');
-        this.data.occupation = this.navParams.get('occupation');
-        console.log('Test', this.navParams.get('email'));
+        this.grabCard(this.navParams.get('path'));
     }
     ViewcardPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ViewcardPage');
     };
+    ViewcardPage.prototype.grabCard = function (path) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.AFauth.authState.subscribe(function (data) {
+                            console.log(path);
+                            _this.card = _this.afDB.object(path).valueChanges();
+                            _this.card.subscribe(function (card) {
+                                console.log('Grabbed card', card);
+                                _this.card = card;
+                                console.log('Test', _this.card);
+                                //  let scannedCard = this.grabbedCard$;                                 
+                            });
+                        })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     ViewcardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewcard',template:/*ion-inline-start:"C:\Users\Mohammad\Desktop\apps\SnapCard\src\pages\viewcard\viewcard.html"*/'<!--\n  Generated template for the ViewcardPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar  color="primary">\n    <ion-title>Scan result</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n   <ion-card  class="emptycard" style="height: 580px;"[style.border-color]=(data.color) >\n        <ion-row justify-content-end 	 >\n          <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(data.color)	>\n              <h2 style="margin-top: 10px;color:white" >{{data.company}}</h2>\n          </ion-item>\n        </ion-row>\n        <ion-content justify-content-start	class="row" text-left ion-start>\n          <ion-grid style="height: 100%;">\n            <ion-row>\n            <ion-col >\n                <h1>{{data.display_name}}</h1>\n                <h2>{{data.occupation}}</h2>\n                <p>{{data.description}}</p>\n                <br>\n                <p>Phone: {{data.telefon}}</p>\n                <p>Fax: {{data.telefax}}</p>\n                <p>Email: {{data.email}} </p>\n                <p [style.color]=(data.color)>{{data.website}}</p>\n              </ion-col>\n              <ion-col align-self-end		>\n              <p>{{data.address1}}</p>\n              <p>{{data.address2}}</p>\n              <p>{{data.address3}}</p>\n              <p>&nbsp;</p>\n            </ion-col>\n          </ion-row>\n            </ion-grid>\n            \n          </ion-content>\n\n      </ion-card>\n    \n    </ion-content>\n'/*ion-inline-end:"C:\Users\Mohammad\Desktop\apps\SnapCard\src\pages\viewcard\viewcard.html"*/,
+            selector: 'page-viewcard',template:/*ion-inline-start:"C:\Users\Mohammad\Desktop\apps\SnapCard\src\pages\viewcard\viewcard.html"*/'<!--\n  Generated template for the ViewcardPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar  color="primary">\n    <ion-title>Scan result</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n   <ion-card  class="emptycard" style="height: 580px;"[style.border-color]=(card.color) >\n        <ion-row justify-content-end 	 >\n          <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(card.color)	>\n              <h2 style="margin-top: 10px;color:white" >{{card.company}}</h2>\n          </ion-item>\n        </ion-row>\n        <ion-content justify-content-start	class="row" text-left ion-start>\n          <ion-grid style="height: 100%;">\n            <ion-row>\n            <ion-col >\n                <h1>{{card.display_name}}</h1>\n                <h2>{{card.occupation}}</h2>\n                <p>{{card.description}}</p>\n                <br>\n                <p>Phone: {{card.telefon}}</p>\n                <p>Fax: {{card.telefax}}</p>\n                <p>Email: {{card.email}} </p>\n                <p [style.color]=(card.color)>{{card.website}}</p>\n              </ion-col>\n              <ion-col align-self-end		>\n              <p>{{card.address1}}</p>\n              <p>{{card.address2}}</p>\n              <p>{{card.address3}}</p>\n              <p>&nbsp;</p>\n            </ion-col>\n          </ion-row>\n            </ion-grid>\n            \n          </ion-content>\n\n      </ion-card>\n    \n    </ion-content>\n'/*ion-inline-end:"C:\Users\Mohammad\Desktop\apps\SnapCard\src\pages\viewcard\viewcard.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _d || Object])
     ], ViewcardPage);
@@ -351,15 +409,15 @@ var map = {
 		3
 	],
 	"../pages/main/main.module": [
-		362,
+		364,
 		2
 	],
 	"../pages/register/register.module": [
-		363,
+		362,
 		1
 	],
 	"../pages/viewcard/viewcard.module": [
-		364,
+		363,
 		0
 	]
 };
@@ -466,9 +524,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_16__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/card/card.module#CardPageModule', name: 'CardPage', segment: 'card', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/main/main.module#MainPageModule', name: 'MainPage', segment: 'main', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewcard/viewcard.module#ViewcardPageModule', name: 'ViewcardPage', segment: 'viewcard', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/viewcard/viewcard.module#ViewcardPageModule', name: 'ViewcardPage', segment: 'viewcard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/main.module#MainPageModule', name: 'MainPage', segment: 'main', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_11__app_firebase_config__["a" /* FIREBASE_CONFIG */]),
@@ -650,8 +708,7 @@ var MainPage = /** @class */ (function () {
         this.afDB = afDB;
         this.scanner = scanner;
         this.getCardsNames();
-        // this.test()
-        //this.getNames();
+        //this.sendPath('card/deGwf1NDkoOmtLIpM5CRgTk9zt82/-LESduWfNFLY_LoZQ0J4')
     }
     MainPage.prototype.getCurrentPath = function () {
         var _this = this;
@@ -693,28 +750,6 @@ var MainPage = /** @class */ (function () {
             });
         });
     };
-    MainPage.prototype.grabCard = function (path) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.AFauth.authState.subscribe(function (data) {
-                            console.log(path);
-                            _this.grabbedCard$ = _this.afDB.object(path).valueChanges();
-                            _this.grabbedCard$.subscribe(function (card) {
-                                console.log('Grabbed card', card);
-                                _this.scannedCard = _this.grabbedCard$;
-                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__viewcard_viewcard__["a" /* ViewcardPage */], [_this.grabbedCard$]);
-                            });
-                        })];
-                    case 1:
-                        result = _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     MainPage.prototype.getObjectData = function (data) {
         var array = Object.keys(data).map(function (i) { return data[i]; });
         var keys = Object.keys(data);
@@ -726,11 +761,13 @@ var MainPage = /** @class */ (function () {
         console.log('Data:', array);
         return array;
     };
+    MainPage.prototype.sendPath = function (link) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__viewcard_viewcard__["a" /* ViewcardPage */], { path: link });
+    };
     MainPage.prototype.scan = function () {
         var _this = this;
         this.scanner.scan().then(function (barcodeData) {
-            console.log('Barcode data', barcodeData);
-            _this.grabCard(barcodeData.text);
+            _this.sendPath(barcodeData.text);
         }).catch(function (err) {
             console.log('Error', err);
         });

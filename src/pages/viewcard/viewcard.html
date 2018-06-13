@@ -14,29 +14,29 @@
 
 
 <ion-content padding>
-   <ion-card  class="emptycard" style="height: 580px;"[style.border-color]=(data.color) >
+   <ion-card  class="emptycard" style="height: 580px;"[style.border-color]=(card.color) >
         <ion-row justify-content-end 	 >
-          <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(data.color)	>
-              <h2 style="margin-top: 10px;color:white" >{{data.company}}</h2>
+          <ion-item  item-end style="width: 100%;; margin-top: -15px" text-center  [style.background-color]=(card.color)	>
+              <h2 style="margin-top: 10px;color:white" >{{card.company}}</h2>
           </ion-item>
         </ion-row>
         <ion-content justify-content-start	class="row" text-left ion-start>
           <ion-grid style="height: 100%;">
             <ion-row>
             <ion-col >
-                <h1>{{data.display_name}}</h1>
-                <h2>{{data.occupation}}</h2>
-                <p>{{data.description}}</p>
+                <h1>{{card.display_name}}</h1>
+                <h2>{{card.occupation}}</h2>
+                <p>{{card.description}}</p>
                 <br>
-                <p>Phone: {{data.telefon}}</p>
-                <p>Fax: {{data.telefax}}</p>
-                <p>Email: {{data.email}} </p>
-                <p [style.color]=(data.color)>{{data.website}}</p>
+                <p>Phone: {{card.telefon}}</p>
+                <p>Fax: {{card.telefax}}</p>
+                <p>Email: {{card.email}} </p>
+                <p [style.color]=(card.color)>{{card.website}}</p>
               </ion-col>
               <ion-col align-self-end		>
-              <p>{{data.address1}}</p>
-              <p>{{data.address2}}</p>
-              <p>{{data.address3}}</p>
+              <p>{{card.address1}}</p>
+              <p>{{card.address2}}</p>
+              <p>{{card.address3}}</p>
               <p>&nbsp;</p>
             </ion-col>
           </ion-row>

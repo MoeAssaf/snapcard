@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 // import { Observable } from 'rxjs/Observable';
-import {  FirebaseListObservable } from "angularfire2/database-deprecated";
+import {  FirebaseListObservable , FirebaseObjectObservable} from "angularfire2/database-deprecated";
 import { AngularFireList } from 'angularfire2/database/interfaces'
 
 import { Card } from '../../models/cards';
@@ -30,21 +30,20 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'main.html',
 })
 export class MainPage {
-  userId: void
-  path: any
-  qrData: "failed"
-  listCard$: FirebaseListObservable<any[]>
-  listCardNames$: FirebaseListObservable<any[]>
-  grabbedCard$: FirebaseListObservable<any[]>
-  uid: any
-  scannedCard: any
+  userId: void;
+  path: any;
+  qrData: "failed";
+  listCard$: FirebaseObjectObservable<any[]>;
+  listCardNames$: FirebaseObjectObservable<any[]>;
+  grabbedCard$: FirebaseObjectObservable<any[]>;
+  uid: any;
+  scannedCard: any;
 
   constructor(private AFauth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams,
               private storage: Storage, private afDB : AngularFireDatabase, private scanner: BarcodeScanner) {
     this.getCardsNames();
-    // this.test()
-    //this.getNames();
 
+    //this.sendPath('card/deGwf1NDkoOmtLIpM5CRgTk9zt82/-LESduWfNFLY_LoZQ0J4')
 
   }
   getCurrentPath() {
@@ -78,19 +77,7 @@ export class MainPage {
 
    })
   }
-  async grabCard(path){
-    const result = await this.AFauth.authState.subscribe(data => {
-     console.log(path);
-       this.grabbedCard$ = this.afDB.object(path).valueChanges();
-                 this.grabbedCard$.subscribe(card => {console.log('Grabbed card', card);
-                                     this.scannedCard = this.grabbedCard$;
-                                     this.navCtrl.push(ViewcardPage,[this.grabbedCard$])
 
-                                                                                 
-                                                  });
-
-   })
-  }
    getObjectData(data){
     const array = Object.keys(data).map(i => data[i]);
 
@@ -105,11 +92,12 @@ export class MainPage {
   return array
 
   }
-
+  sendPath(link){
+    this.navCtrl.push(ViewcardPage,{path: link})
+  }
   scan(){
     this.scanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-      this.grabCard(barcodeData.text);
+      this.sendPath(barcodeData.text);
      }).catch(err => {
          console.log('Error', err);
      });
